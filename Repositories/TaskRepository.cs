@@ -23,7 +23,7 @@ namespace TaskManagement.Repositories
         {
             using var connection = CreateConnection();
             return await connection.QueryAsync<TaskModel>(
-                "usp_GetAllTasks", 
+                "Job_GetAllTasks", 
                 commandType: CommandType.StoredProcedure);
         }
 
@@ -31,7 +31,7 @@ namespace TaskManagement.Repositories
         {
             using var connection = CreateConnection();
             return await connection.QueryFirstOrDefaultAsync<TaskModel>(
-                "usp_GetTaskById", 
+                "Job_GetTaskById", 
                 new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
@@ -40,7 +40,7 @@ namespace TaskManagement.Repositories
         {
             using var connection = CreateConnection();
             return await connection.ExecuteScalarAsync<int>(
-                "usp_CreateTask", 
+                "Job_CreateTask", 
                 new 
                 {
                     Title = task.Title,
@@ -55,7 +55,7 @@ namespace TaskManagement.Repositories
         {
             using var connection = CreateConnection();
             var affectedRows = await connection.ExecuteAsync(
-                "usp_UpdateTask", 
+                "Job_UpdateTask", 
                 new 
                 {
                     Id = task.Id,
@@ -73,7 +73,7 @@ namespace TaskManagement.Repositories
         {
             using var connection = CreateConnection();
             var affectedRows = await connection.ExecuteAsync(
-                "usp_DeleteTask", 
+                "Job_DeleteTask", 
                 new { Id = id }, 
                 commandType: CommandType.StoredProcedure);
 

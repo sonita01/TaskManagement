@@ -1,6 +1,9 @@
-CREATE PROCEDURE usp_DeleteTask
+CREATE PROCEDURE [dbo].[Job_DeleteTask]
     @Id INT
 AS
 BEGIN
-    DELETE FROM Tasks WHERE Id = @Id;
+    SET NOCOUNT ON;
+
+    DELETE FROM dbo.Tasks 
+    WHERE Id = @Id;
 END

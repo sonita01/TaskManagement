@@ -1,6 +1,9 @@
-CREATE PROCEDURE usp_GetTaskById
+CREATE PROCEDURE [dbo].[Job_GetTaskById]
     @Id INT
 AS
 BEGIN
-    SELECT * FROM Tasks WHERE Id = @Id;
+    SET NOCOUNT ON;
+
+    SELECT * FROM dbo.Tasks 
+    WHERE Id = @Id;
 END

@@ -1,16 +1,18 @@
-CREATE PROCEDURE usp_CreateTask
+CREATE PROCEDURE [dbo].[Job_CreateTask]
     @Title NVARCHAR(100),
     @Description NVARCHAR(MAX),
     @DueDate DATETIME,
     @Priority INT
 AS
 BEGIN
-    INSERT INTO Tasks (Title, Description, DueDate, Priority)
+    SET NOCOUNT ON;
+
+    DECLARE @NewTaskID INT;
+
+    INSERT INTO dbo.Tasks (Title, Description, DueDate, Priority)
     VALUES (@Title, @Description, @DueDate, @Priority);
 
-    SELECT CAST(SCOPE_IDENTITY() AS INT);
+    SET @NewTaskID = CAST(SCOPE_IDENTITY() AS INT);
+
+    SELECT @NewTaskID AS TaskID;
 END
-
-EXEC sp_helptext 'usp_CreateTask';
-
-

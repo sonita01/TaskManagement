@@ -1,5 +1,7 @@
-CREATE PROCEDURE usp_GetAllTasks
+CREATE PROCEDURE [dbo].[Job_GetAllTasks]
 AS
 BEGIN
-    SELECT * FROM Tasks;
+    SET NOCOUNT ON;
+
+    SELECT * FROM dbo.Tasks;
 END

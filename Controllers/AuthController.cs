@@ -21,7 +21,6 @@ namespace TaskManagement.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel login)
         {
-            // Dummy user check — replace with real DB auth
             if (login.Username == "admin" && login.Password == "123456")
             {
                 var jwtSettings = _configuration.GetSection("Jwt");
@@ -31,10 +30,7 @@ namespace TaskManagement.Controllers
                 var token = new JwtSecurityToken(
                     issuer: jwtSettings["Issuer"],
                     audience: jwtSettings["Audience"],
-                    claims: new[]
-                    {
-                        new Claim(ClaimTypes.Name, login.Username)
-                    },
+                    claims: new[] { new Claim(ClaimTypes.Name, login.Username) },
                     expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(jwtSettings["ExpiresInMinutes"])),
                     signingCredentials: creds
                 );

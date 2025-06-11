@@ -1,4 +1,4 @@
-CREATE PROCEDURE usp_UpdateTask
+CREATE PROCEDURE [dbo].[Job_UpdateTask]
     @Id INT,
     @Title NVARCHAR(100),
     @Description NVARCHAR(MAX),
@@ -6,7 +6,9 @@ CREATE PROCEDURE usp_UpdateTask
     @Priority INT
 AS
 BEGIN
-    UPDATE Tasks
+    SET NOCOUNT ON;
+
+    UPDATE dbo.Tasks
     SET Title = @Title,
         Description = @Description,
         DueDate = @DueDate,

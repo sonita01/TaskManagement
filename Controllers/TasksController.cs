@@ -7,21 +7,21 @@ using TaskManagement.Repositories;
 
 namespace TaskManagement.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TasksController : ControllerBase
     {
-        private readonly ITaskRepository _repository;
-        public TasksController(ITaskRepository repository)
+        private readonly ITaskService _service;
+        
+        public TasksController(ITaskService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-           var tasks = await _repository.GetAllTasksAsync();
+            var tasks = await _service.GetAllTasksAsync();
             return Ok(new
             {
                 code = ResponseMessage.Success,
@@ -33,7 +33,7 @@ namespace TaskManagement.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var task = await _repository.GetTaskByIdAsync(id);
+            var task = await _service.GetTaskByIdAsync(id);
             if (task == null)
             {
                 return NotFound(new
@@ -51,10 +51,11 @@ namespace TaskManagement.Controllers
             });
         }
 
+        // Update all other methods to use _service instead of _repository
         [HttpPost]
         public async Task<IActionResult> Create(TaskModel task)
         {
-            var id = await _repository.CreateTaskAsync(task);
+            var id = await _service.CreateTaskAsync(task);
             task.Id = id;
 
             return CreatedAtAction(nameof(GetById), new { id }, new
@@ -77,7 +78,7 @@ namespace TaskManagement.Controllers
                 });
             }
 
-            var updated = await _repository.UpdateTaskAsync(task);
+            var updated = await _service.UpdateTaskAsync(task);
             if (!updated)
             {
                 return NotFound(new
@@ -97,7 +98,7 @@ namespace TaskManagement.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deleted = await _repository.DeleteTaskAsync(id);
+            var deleted = await _service.DeleteTaskAsync(id);
             if (!deleted)
             {
                 return NotFound(new
