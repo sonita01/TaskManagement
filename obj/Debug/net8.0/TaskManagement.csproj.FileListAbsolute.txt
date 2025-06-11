@@ -77,3 +77,5 @@ C:\Users\sonita.ren\Documents\Project\TaskManagement\obj\Debug\net8.0\refint\Tas
 C:\Users\sonita.ren\Documents\Project\TaskManagement\obj\Debug\net8.0\TaskManagement.pdb
 C:\Users\sonita.ren\Documents\Project\TaskManagement\obj\Debug\net8.0\TaskManagement.genruntimeconfig.cache
 C:\Users\sonita.ren\Documents\Project\TaskManagement\obj\Debug\net8.0\ref\TaskManagement.dll
+C:\Users\sonita.ren\Documents\Project\TaskManagement\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\sonita.ren\Documents\Project\TaskManagement\obj\Debug\net8.0\TaskManagement.sourcelink.json
