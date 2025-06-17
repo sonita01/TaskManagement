@@ -4,6 +4,12 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT * FROM dbo.Tasks 
+    SELECT 
+        [Id],
+        [Title],
+        [Description],
+        [DueDate],
+        [Priority]
+    FROM dbo.Tasks
     WHERE Id = @Id;
 END
